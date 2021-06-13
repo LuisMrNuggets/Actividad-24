@@ -1,0 +1,37 @@
+---
+title: "Covid"
+author: "Luis e Ivan"
+date: "6/12/2021"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Informacion de covid por medio de API
+Por medio de las herramientas de R, R Studio, R Markdow y R Shiny junto con las librerias (jsonlite y curl) que nos ayudaran a consultar nuestros datos referentes al COVID-19 en España en la fecha de 2020-07-15. Para asi poder manipularlos de una manera adecuada y mejor representativa.
+
+```{r, echo=FALSE}
+
+library(jsonlite)
+library(curl)
+library(tidyverse)
+q <- curl_escape("true")
+uri_paradas_metro <- paste("https://covid19.secuoyas.io/api/v1/es/ccaa?ultimodia=",q, sep="")
+paradas_metro <- fromJSON(uri_paradas_metro)
+paradas_metro <- paradas_metro[["timeline"]][["regiones"]]
+otra <-paradas_metro[[1]][["data"]]
+
+otra2 <-read.csv("PorcentajeDeMujeresSinIngresos.csv")
+
+inputPanel(
+  selectInput("Casos:", label = "Recuperados:",
+              choices = c("125","163","1063","1533","1537","2180","2287","2652","3107","3772","3905","6392","8716","9204","9970","10671","16160","26203","40736"), selected = "125")
+)
+
+renderTable({otra2%>%filter(Estado==input$Casos)})
+
+otra2 <-read.csv("PorcentajeDeMujeresSinIngresos.csv")
+
+```
