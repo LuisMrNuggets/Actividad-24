@@ -10,7 +10,7 @@ runtime: shiny
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Informacion de covid por medio de API
-Por medio de las herramientas de R, R Studio, R Markdow y R Shiny junto con las librerias (jsonlite y curl) que nos ayudaran a consultar nuestros datos referentes al COVID-19 en España en la fecha de 2020-07-15. Para asi poder manipularlos de una manera adecuada y mejor representativa.
+Por medio de las herramientas de R, R Studio, R Markdow, R Shiny y GitHub junto con las librerias (jsonlite, curl y tidyverse) que nos ayudaran a consultar nuestros datos referentes al COVID-19 en España en la fecha de 2020-07-15 proveniente de una API. Para asi poder manipularlos de una manera adecuada y mejor representativa.
 
 ```{r, echo=FALSE}
 
